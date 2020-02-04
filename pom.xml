@@ -16,10 +16,9 @@
         </dependency>
     </dependencies>
 
-
     <properties>
-        <maven.complier.source>1.8</maven.complier.source>
-        <maven.complier.target>1.8</maven.complier.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <build>
@@ -29,7 +28,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.napier.spartans.App</mainClass>
+                            <mainClass>com.napier.sem.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
