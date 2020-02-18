@@ -1,0 +1,148 @@
+@startuml
+
+/'#30'/
+/'As a Staff member I want to view the population of a district.'/
+
+actor staff30 as "Staff Member"
+
+rectangle Database30 as "Database"
+
+rectangle "World Database UC30" {
+    usecase UC30 as "View population of a district"
+
+    usecase UC30a as "print district"
+
+    staff30 - UC30
+    UC30 ..> UC30a : include
+    UC30 - Database30
+}
+
+
+
+
+/'#29'/
+/'As a staff member I want to view the population of country'/
+
+actor staff29 as "Staff Member"
+
+rectangle Database29 as "Database"
+
+rectangle "World Database UC29" {
+    usecase UC29 as "View population of a country"
+
+    usecase UC29a as "print countries"
+
+    staff29 - UC29
+    UC29 ..> UC29a : include
+    UC29 - Database29
+}
+
+/'#28'/
+/'As a staff member I want to view the population of a region'/
+
+actor staff28 as "Staff Member"
+
+rectangle Database28 as "Database"
+
+rectangle "World Database UC28" {
+    usecase UC28 as "View population of a region"
+
+    usecase UC28a as "print region"
+
+    staff28 - UC28
+    UC28 ..> UC28a : include
+    UC28 - Database28
+}
+
+/'#27'/
+/'As a staff member I want to view the population of a continent'/
+
+actor staff27 as "Staff Member"
+
+rectangle Database27 as "Database"
+
+rectangle "World Database UC27" {
+    usecase UC27 as "View population of a continent"
+
+    usecase UC27a as "print continent"
+
+    staff27 - UC27
+    UC27 ..> UC27a : include
+    UC27 - Database27
+}
+
+/'#25'/
+/'As a staff member I want to view the population of people living in cities and not living in cities in each country'/
+
+actor staff25 as "Staff Member"
+
+rectangle Database25 as "Database"
+
+rectangle "World Database UC25" {
+    usecase UC25 as "View population of people
+    living in and out of cities"
+
+    usecase UC25a as "print cities"
+
+    staff25 - UC25
+    UC25 ..> UC25a : include
+    UC25 - Database25
+}
+
+/'#24'/
+/'As a staff member I want to view the population of people living in cities and not living in cities in each region'/
+
+actor staff24 as "Staff Member"
+
+rectangle Database24 as "Database"
+
+rectangle "World Database UC24" {
+    usecase UC24 as "View population of people
+    living in and out of region"
+
+    usecase UC24a as "print regions"
+
+    staff24 - UC24
+    UC24 ..> UC24a : include
+    UC24 - Database24
+}
+
+/'#23'/
+/'As a staff member I want to view the population of people living in cities and not living in cities in each continent'/
+
+actor staff23 as "Staff Member"
+
+rectangle Database23 as "Database"
+
+rectangle "World Database UC23" {
+    usecase UC23 as "View population of people
+    living in and out of continent"
+
+    usecase UC23a as "print continent"
+
+    staff23 - UC23
+    UC23 ..> UC23a : include
+    UC23 - Database23
+}
+
+/'#14'/
+/'As a staff member I want to view the to N populated cities in a region where N is provided by user'/
+
+actor staff14 as "Staff Member"
+
+rectangle Database14 as "Database"
+
+rectangle "World Database UC14" {
+    usecase UC14 as "View top N populated cities in a region
+    (where N is provided by the user)"
+
+    usecase UC14a as "print cities"
+    usecase UC14b as "get input from user"
+
+    staff14 - UC14
+    UC14 ..> UC14a : include
+    UC14 ..> UC14b : include
+    UC14 - Database14
+}
+left to right direction
+@endum1
