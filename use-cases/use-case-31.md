@@ -1,4 +1,4 @@
-# USE CASE: 32 Produce a Report on the population of a city
+# USE CASE: 31 Produce a Report on the population of a city
 
 ## CHARACTERISTIC INFORMATION
 

@@ -118,6 +118,25 @@ rectangle "World Database UC26" {
 }
 
 /'#31'/
+/'As a Staff Member, I want to view the population of a city.'/
+actor staff31 as "Staff Member"
+
+rectangle Database31 as "Database"
+
+rectangle "World Database UC31" {
+    usecase UC31 as "Get the population of a city"
+
+    usecase UC31a as "Print population"
+
+    usecase UC31b as "Get City"
+
+    staff31 - UC31
+    UC31 ..> UC31a : include
+    UC31 ..> UC31b : include
+    UC31 - Database31
+}
+
+/'#32'/
 /'As a Staff Member, I want to view the number of people who speak a language, from greatest number to smallest (Including percentage)'/
 actor staff32 as "Staff Member"
 
