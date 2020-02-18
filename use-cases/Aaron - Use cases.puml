@@ -1,0 +1,163 @@
+@startuml
+/'Aaron Morrison - my 8 use cases here..'/
+
+/'#1'/
+/'As a Staff Member, I want to view all the countries in the world
+organised by largest population to smallest.'/
+actor staff1 as "Staff Member"
+
+rectangle Database1
+
+rectangle "World Database UC1" {
+    usecase UC1 as "Get countries
+    by population"
+
+    usecase UC1a as "Print countries"
+
+    staff1 - UC1
+    UC1 ..> UC1a : include
+    UC1 - Database1
+}
+
+/'#2'/
+/'As a Staff Member, I want to view all the countries in a continent
+organised by largest population to smallest.'/
+actor staff2 as "Staff Member"
+
+rectangle Database2
+
+rectangle "World Database UC2" {
+    usecase UC2 as "Get countries in continent
+    by population"
+
+    usecase UC2a as "Print countries"
+
+    staff2 - UC2
+    UC2 ..> UC2a : include
+    UC2 - Database2
+}
+
+/'#3'/
+/'As a Staff Member, I want to view all the countries in a region
+organised by largest population to smallest.'/
+actor staff3 as "Staff Member"
+
+rectangle Database3
+
+rectangle "World Database UC3" {
+    usecase UC3 as "Get countries in region
+    by population"
+
+    usecase UC3a as "Print countries"
+
+    staff3 - UC3
+    UC3 ..> UC3a : include
+    UC3 - Database3
+}
+
+/'#4'/
+/'As a Staff Member, I want to view the t op N populated countries
+in the world where N is provided by the user.'/
+actor staff4 as "Staff Member"
+
+rectangle Database4
+
+rectangle "World Database UC4" {
+    usecase UC4 as "Get countries
+    by population"
+
+    usecase UC4a as "Print countries"
+
+     usecase UC4b as "Get user input
+        for country amount"
+
+    staff4 - UC4
+    UC4 ..> UC4a : include
+    UC4b ..> UC4 : include
+    UC4 - Database4
+}
+
+/'#5'/
+/'As a Staff Member, I want to view the t op N populated countries
+in a continent where N is provided by the user.'/
+actor staff5 as "Staff Member"
+
+rectangle Database5
+
+rectangle "World Database UC5" {
+    usecase UC5 as "Get countries in continent
+    by population"
+
+    usecase UC5a as "Print countries"
+
+     usecase UC5b as "Get user input
+        for country amount"
+
+    staff5 - UC5
+    UC5 ..> UC5a : include
+    UC5b ..> UC5 : include
+    UC5 - Database5
+}
+
+/'#6'/
+/'As a Staff Member, I want to view the t op N populated countries
+ in a region where N is provided by the user.'/
+actor staff6 as "Staff Member"
+
+rectangle Database6
+
+rectangle "World Database UC6" {
+    usecase UC6 as "Get countries in region
+    by population"
+
+    usecase UC6a as "Print countries"
+
+     usecase UC6b as "Get user input
+        for country amount"
+
+    staff6 - UC6
+    UC6 ..> UC6a : include
+    UC6b ..> UC6 : include
+    UC6 - Database6
+}
+
+/'#7'/
+/'As a Staff Member, I want to view all the cities in the world
+organised by largest population to smallest.'/
+actor staff7 as "Staff Member"
+
+rectangle Database7
+
+rectangle "World Database UC7" {
+    usecase UC7 as "Get cities
+    by population"
+
+    usecase UC7a as "Print cities"
+
+    staff7 - UC7
+    UC7 ..> UC7a : include
+    UC7 - Database7
+}
+
+/'#8'/
+/'As a Staff Member, I want to all view the cities in a continent
+organised by largest population to smallest.'/
+actor staff8 as "Staff Member"
+
+rectangle Database8
+
+rectangle "World Database UC8" {
+    usecase UC8 as "Get cities in continent
+    by population"
+
+    usecase UC8a as "Print cities"
+
+    staff8 - UC8
+    UC8 ..> UC8a : include
+    UC8 - Database8
+}
+
+left to right direction /'used to orient the view vertically'/
+
+@enduml
+
