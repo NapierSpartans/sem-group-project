@@ -1,4 +1,4 @@
-# USE CASE 4: Produce a Report on the top populated countries in the world, where the user defines the amount of countries they want displayed.
+# USE CASE 5: Produce a Report on the top populated countries in a continent, where the user defines the amount of countries they want displayed.
 
 ## CHARACTERISTIC INFORMATION
 
@@ -12,7 +12,7 @@ Organisation..
 Primary task.
 
 ### Preconditions
-We know the country and the number provided by the user.  Database contains current country population data.
+We know the country, the continent and the number provided by the user.  Database contains current country population data.
 
 ### Success End Condition
 A report is available for Staff Member to provide to Manager.
@@ -29,7 +29,7 @@ A request for country information is sent to Staff Member.
 ## MAIN SUCCESS SCENARIO
 1. Manager request population information for a given number of countries.
 2. Staff Member saves the number of countries to get population information for.
-3. Staff Member uses number to get current population information of the highest populated countries.
+3. Staff Member uses number to get current population information of the highest populated countries in a continent.
 4. Staff Member provides report to Manager.
 
 ## EXTENSIONS
