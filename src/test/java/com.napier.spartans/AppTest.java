@@ -1,13 +1,9 @@
 package com.napier.spartans;
 
-import com.napier.spartans.App;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
 
@@ -41,8 +37,10 @@ public class AppTest {
         City city = new City();
         city.id = 1;
         city.name = "New York";
-        city.countryCode = "USA";
-        city.District = "North America";
+        Country country = new Country();
+        country.name = "United States of America";
+        city.country = country;
+        city.district = "North America";
         city.population = 144000000;
         cities.add(city);
         app.printCities(cities);
