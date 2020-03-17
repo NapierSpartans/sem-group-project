@@ -9,9 +9,6 @@ public class App {
 
     private Connection con;
 
-    public void init(String connectionAddress){
-        connect(connectionAddress);
-    }
 
     public static void main(String[] args) {
         // Create new Application
@@ -20,11 +17,11 @@ public class App {
         // Connect to database
         if (args.length < 1)
         {
-            a.init("localhost:3306");
+            a.connect("localhost:3306");
         }
         else
         {
-            a.init(args[0]);
+            a.connect(args[0]);
         }
     }
 
@@ -115,5 +112,20 @@ public class App {
                 System.out.println("Error closing connection to database");
             }
         }
+    }
+
+    public void printCities(ArrayList<City> cities){
+        if(cities != null){
+            System.out.println(String.format("%-10s %-20s %-5s %-15s %-10s", "id", "name", "code" , "district","population"));
+            for (City c : cities) {
+                if (c == null) continue;
+                System.out.println(
+                        String.format("%-10d %-20s %-5s %-15s %-10d", c.id, c.name, c.countryCode, c.District , c.population)
+                );
+            }
+        } else {
+            System.out.println("No Cities");
+        }
+
     }
 }

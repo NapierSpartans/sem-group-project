@@ -16,35 +16,36 @@ public class AppTest {
     @BeforeAll
     static void init(){
         app = new App();
-        app.init("localhost:33060");
     }
 
     @Test
-    void testGetCitiesInCountryOrderPopulation(){
-        assertDoesNotThrow(() -> {
-            app.getAllCitiesInCountryOrderPopulation("United Kingdom");
-        });
+    void printCitiesNullValue(){
+        app.printCities(null);
     }
 
     @Test
-    void testGetCitiesInCountryOrderPopulationNullInput(){
-        assertDoesNotThrow(() -> {
-            app.getAllCitiesInCountryOrderPopulation(null);
-        });
+    void printCitiesEmptyList(){
+        app.printCities(new ArrayList<>());
     }
 
     @Test
-    void testGetCitiesInCountryOrderPopulationEmptyString(){
-        assertDoesNotThrow(() -> {
-            app.getAllCitiesInCountryOrderPopulation("");
-        });
+    void printCitiesContainsNull() {
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(null);
+        app.printCities(cities);
     }
 
     @Test
-    void testGetCitiesInCountryOrderPopulationInvalidCountry(){
-        assertDoesNotThrow(() -> {
-            app.getAllCitiesInCountryOrderPopulation("bogus value");
-        });
+    void printCities(){
+        ArrayList<City> cities = new ArrayList<>();
+        City city = new City();
+        city.id = 1;
+        city.name = "New York";
+        city.countryCode = "USA";
+        city.District = "North America";
+        city.population = 144000000;
+        cities.add(city);
+        app.printCities(cities);
     }
 
 }

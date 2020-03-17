@@ -9,9 +9,9 @@ addons:
 services:
   - docker
 
-before_install:
+install:
   - docker build -t database db/.
-  - docker run --rm -d -e MYSQL_ROOT_PASSWORD=example -p 127.0.0.1:33060 database
+  - docker run --rm -d -e MYSQL_ROOT_PASSWORD=example -p 33060:3306 database
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 before_script:
@@ -22,16 +22,14 @@ jobs:
     - stage: unit tests
       install: skip
       jdk: oraclejdk11
-      script: mvn test -Dtest=com.napier.spartans.AppTest
+      script: mvn test -Dtest=com.napier.sem.AppTest
     - stage: integration tests
       jdk: oraclejdk11
-      script: mvn test -Dtest=com.napier.spartans.AppIntegrationTest
+      script: echo "Integration Tests"
     - stage: deploy
       install: skip
       jdk: oraclejdk11
-      script:
-        - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
-        - docker-compose up --abort-on-container-exit
+      script: echo "Deploy"
 
 stages:
   - unit tests
