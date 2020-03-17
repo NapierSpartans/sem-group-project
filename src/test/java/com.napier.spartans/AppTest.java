@@ -16,7 +16,7 @@ public class AppTest {
     @BeforeAll
     static void init(){
         app = new App();
-        app.init("localhost:3306");
+        app.init("localhost:33060");
     }
 
     @Test
