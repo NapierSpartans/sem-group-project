@@ -16,6 +16,8 @@ public class AppIntegrationTest {
         app.connect("localhost:33060");
     }
 
+    // CITIES IN COUNTRY BY POPULATION TESTS
+
     @Test
     void testGetCitiesInCountryOrderPopulation(){
         assertDoesNotThrow(() -> {
@@ -41,6 +43,36 @@ public class AppIntegrationTest {
     void testGetCitiesInCountryOrderPopulationInvalidCountry(){
         assertDoesNotThrow(() -> {
             app.getAllCitiesInCountryOrderPopulation("bogus value");
+        });
+    }
+
+    // CITIES IN REGION BY POPULATION TESTS
+
+    @Test
+    void testGetCitiesInRegionOrderPopulation(){
+        assertDoesNotThrow(() -> {
+            app.getAllCitiesInRegionOrderByPopulation("Caribbean");
+        });
+    }
+
+    @Test
+    void testGetCitiesInRegionOrderPopulationNullInput(){
+        assertDoesNotThrow(() -> {
+            app.getAllCitiesInRegionOrderByPopulation(null);
+        });
+    }
+
+    @Test
+    void testGetCitiesInRegionOrderPopulationEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getAllCitiesInRegionOrderByPopulation("");
+        });
+    }
+
+    @Test
+    void testGetCitiesInRegionOrderPopulationInvalidCountry(){
+        assertDoesNotThrow(() -> {
+            app.getAllCitiesInRegionOrderByPopulation("bogus value");
         });
     }
 }

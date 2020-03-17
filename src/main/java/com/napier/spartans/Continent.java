@@ -17,7 +17,7 @@ public enum Continent {
 
     public static Continent valueOfLabel(String label){
         for(Continent c : values()){
-            if (c.label.equals(label)){
+            if (c.label.equalsIgnoreCase(label)){
                 return c;
             }
         }
