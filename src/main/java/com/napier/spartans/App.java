@@ -2,12 +2,16 @@ package com.napier.spartans;
 
 
 import java.sql.*;
-
+import java.util.ArrayList;
 
 
 public class App {
 
     private Connection con;
+
+    public void init(String connectionAddress){
+        connect(connectionAddress);
+    }
 
     public static void main(String[] args) {
         // Create new Application
@@ -16,13 +20,43 @@ public class App {
         // Connect to database
         if (args.length < 1)
         {
-            a.connect("localhost:3306");
+            a.init("localhost:3306");
         }
         else
         {
-            a.connect(args[0]);
+            a.init(args[0]);
         }
     }
+
+    /**
+     * Get All Cities within a country ordered from largest population to smallest
+     */
+    public ArrayList<City> getAllCitiesInCountryOrderPopulation(String country) throws SQLException {
+            Statement stmt = con.createStatement();
+
+            String strSelect =
+                    "SELECT cit.ID, cit.Name, cit.CountryCode, cit.district, cit.population " +
+                            "FROM city as cit LEFT JOIN country as con on " +
+                            "cit.CountryCode = con.code WHERE con.Name = '" + country +
+                            "'ORDER BY cit.population DESC";
+
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cities = new ArrayList<>();
+
+            while (rset.next())
+            {
+                City city = new City();
+                city.id = rset.getInt("cit.ID");
+                city.name = rset.getString("cit.Name");
+                city.countryCode = rset.getString("cit.CountryCode");
+                city.District = rset.getString("cit.district");
+                city.population = rset.getInt("cit.population");
+                cities.add(city);
+            }
+            return cities;
+    }
+
     /**
      * Connect to the MySQL database.
      */
