@@ -283,4 +283,29 @@ public class AppIntegrationTest {
             app.getTop_N_PopulatedCapitalCitiesOfRegion("Invalid String", 5);
         });
     }
+
+    //GET TOP N POPULATED CAPITAL CITIES OF A CONTINENT
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfContinent(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfContinent(Continent.AFRICA, 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfContinentNegativeLimit(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfContinent(Continent.ASIA, -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfContinentNullContinent(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfContinent(null, -1);
+        });
+    }
+
+
+
 }
