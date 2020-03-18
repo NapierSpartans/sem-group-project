@@ -33,6 +33,21 @@ public class App {
         }
     }
 
+    public int getPopulationOfCity(String cityName) throws SQLException {
+
+        Statement stmt = con.createStatement();
+
+        String query = "SELECT population FROM city WHERE name = '" + cityName + "'";
+
+        ResultSet rset = stmt.executeQuery(query);
+
+        if(rset != null && rset.next()){
+            return rset.getInt("population");
+        }
+
+        return -1;
+    }
+
     public ArrayList<City> getAllCitiesInDistrictOrderPopulation(String district) throws SQLException {
         ArrayList<City> cities = new ArrayList<>();
 
