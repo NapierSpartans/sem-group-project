@@ -213,4 +213,39 @@ public class AppIntegrationTest {
             app.getTop_N_PopulatedCities(-1);
         });
     }
+    //GET TOP N POPULATED CITIES OF A COUNTRY
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountry(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry("United Kingdom", 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountryNegativeLimit(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry("United Kingdom", -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountryNullString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry(null, -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountryEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry("", 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountryInvalidString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry("Invalid String", 5);
+        });
+    }
 }
