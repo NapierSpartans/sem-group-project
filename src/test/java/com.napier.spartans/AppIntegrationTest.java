@@ -100,7 +100,7 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void testGetCitiesInDistrictOrderPopulationInvalidCountry(){
+    void testGetCitiesInDistrictOrderPopulationInvalidDistrict(){
         assertDoesNotThrow(() -> {
             app.getAllCitiesInRegionOrderByPopulation("bogus value");
         });
@@ -130,7 +130,7 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void testGetPopulationOfCityInvalidCountry(){
+    void testGetPopulationOfCityInvalidCity(){
         assertDoesNotThrow(() -> {
             app.getPopulationOfCity("bogus value");
         });
@@ -143,6 +143,29 @@ public class AppIntegrationTest {
     void testGetPopulationOfTheWorld(){
         assertDoesNotThrow(() -> {
             app.getPopulationOfWorld();
+        });
+    }
+
+    // N MOST POPULOUS CITIES IN CONTINENT
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N_(){
+        assertDoesNotThrow(() -> {
+            app.get_N_MostPopulousCitiesInContinent(Continent.ASIA, 10);
+        });
+    }
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N_NullInput(){
+        assertDoesNotThrow(() -> {
+            app.get_N_MostPopulousCitiesInContinent(null,10);
+        });
+    }
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N_InvalidLimit(){
+        assertDoesNotThrow(() -> {
+            app.get_N_MostPopulousCitiesInContinent(Continent.AFRICA, 0);
         });
     }
 }
