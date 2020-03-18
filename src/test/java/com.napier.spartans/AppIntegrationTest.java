@@ -168,4 +168,34 @@ public class AppIntegrationTest {
             app.get_N_MostPopulousCitiesInContinent(Continent.AFRICA, 0);
         });
     }
+
+    // WORLD PERCENTAGE OF LANGUAGE SPEAKERS
+
+    @Test
+    void testGetPercentageOfLanguageSpeakers(){
+        assertDoesNotThrow(() -> {
+            app.getWorldPercentageOfLanguageSpeakers("Spanish");
+        });
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersNullInput(){
+        assertDoesNotThrow(() -> {
+            app.getWorldPercentageOfLanguageSpeakers(null);
+        });
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getWorldPercentageOfLanguageSpeakers("");
+        });
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersInvalidCity(){
+        assertDoesNotThrow(() -> {
+            app.getWorldPercentageOfLanguageSpeakers("bogus value");
+        });
+    }
 }

@@ -101,6 +101,24 @@ public class App {
         return cities;
     }
 
+    public double getWorldPercentageOfLanguageSpeakers(String language) throws SQLException {
+
+        Statement stmt = con.createStatement();
+
+        String query = "SELECT (a.speakers/b.total)*100 as percentageofpopulation FROM " +
+                "(SELECT sum((con.population/100)*lan.percentage) as speakers FROM countrylanguage AS lan " +
+                "LEFT JOIN country as con on lan.countrycode = con.code WHERE language = '" + language +"') AS a, " +
+                "(SELECT sum(population) as total FROM country) as b";
+
+        ResultSet rset = stmt.executeQuery(query);
+
+        if(rset != null && rset.next()){
+            return rset.getDouble("percentageofpopulation");
+        }
+
+        return -1;
+    }
+
     public long getPopulationOfWorld() throws SQLException {
 
         Statement stmt = con.createStatement();
