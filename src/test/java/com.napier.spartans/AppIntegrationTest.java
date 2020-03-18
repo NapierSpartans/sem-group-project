@@ -347,4 +347,34 @@ public class AppIntegrationTest {
             app.getMostPopulatedCapitalCitiesOfContinent(null);
         });
     }
+
+    // MOST POPULATED CAPITAL CITIES IN A REGION
+
+    @Test
+    void testGetMostPopulatedCapitalCitiesOfRegion(){
+        assertDoesNotThrow(() -> {
+            app.getMostPopulatedCapitalCitiesOfRegion("North America");
+        });
+    }
+
+    @Test
+    void testGetMostPopulatedCapitalCitiesOfRegionNullValue(){
+        assertDoesNotThrow(() -> {
+            app.getMostPopulatedCapitalCitiesOfRegion(null);
+        });
+    }
+
+    @Test
+    void testGetMostPopulatedCapitalCitiesOfRegionEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getMostPopulatedCapitalCitiesOfRegion("");
+        });
+    }
+
+    @Test
+    void testGetMostPopulatedCapitalCitiesOfRegionInvalidString(){
+        assertDoesNotThrow(() -> {
+            app.getMostPopulatedCapitalCitiesOfRegion("Invalid String");
+        });
+    }
 }
