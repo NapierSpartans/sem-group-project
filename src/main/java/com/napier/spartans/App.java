@@ -439,9 +439,11 @@ public class App {
 
     public ArrayList<City> getAllCitiesInDistrictOrderPopulation(String district, int limit) throws SQLException {
 
-        if(limit < 1) return null;
+        if(limit < 1 || district == null) return null;
 
         ArrayList<City> cities = new ArrayList<>();
+
+        if (district.isEmpty()) return cities;
 
         Statement stmt = con.createStatement();
 

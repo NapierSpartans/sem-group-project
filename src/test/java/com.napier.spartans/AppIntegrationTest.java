@@ -153,34 +153,65 @@ public class AppIntegrationTest {
     @Test
     void testGetCitiesInDistrictOrderPopulationDoesNotThrow(){
         assertDoesNotThrow(() -> {
-            app.getAllCitiesInRegionOrderByPopulation("Buenos Aires");
+            app.getAllCitiesInDistrictOrderPopulation("Buenos Aires");
         });
     }
 
     @Test
     void testGetCitiesInDistrictOrderPopulationNullInputDoesNotThrow(){
         assertDoesNotThrow(() -> {
-            app.getAllCitiesInRegionOrderByPopulation(null);
+            app.getAllCitiesInDistrictOrderPopulation(null);
         });
     }
 
     @Test
     void testGetCitiesInDistrictOrderPopulationEmptyStringDoesNotThrow(){
         assertDoesNotThrow(() -> {
-            app.getAllCitiesInRegionOrderByPopulation("");
+            app.getAllCitiesInDistrictOrderPopulation("");
         });
     }
 
     @Test
     void testGetCitiesInDistrictOrderPopulationInvalidDistrictDoesNotThrow(){
         assertDoesNotThrow(() -> {
-            app.getAllCitiesInRegionOrderByPopulation("bogus value");
+            app.getAllCitiesInDistrictOrderPopulation("bogus value");
         });
     }
 
     @Test
     void testGetCitiesInDistrictOrderPopulation(){
+        try {
+            assertEquals(31, app.getAllCitiesInDistrictOrderPopulation("Buenos Aires").size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Test
+    void testGetCitiesInDistrictOrderPopulationNullDistrict(){
+        try {
+            assertEquals(null, app.getAllCitiesInDistrictOrderPopulation(null));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulationEmptyDistrict(){
+        try {
+            assertEquals(0, app.getAllCitiesInDistrictOrderPopulation("").size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulationInvalidDistrict(){
+        try {
+            assertEquals(0, app.getAllCitiesInDistrictOrderPopulation("Bogus Value").size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // POPULATION OF A CITY
