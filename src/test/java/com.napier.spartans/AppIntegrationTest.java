@@ -100,9 +100,187 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void testGetCitiesInDistrictOrderPopulationInvalidCountry(){
+    void testGetCitiesInDistrictOrderPopulationInvalidDistrict(){
         assertDoesNotThrow(() -> {
             app.getAllCitiesInRegionOrderByPopulation("bogus value");
+        });
+    }
+
+    // POPULATION OF A CITY
+
+    @Test
+    void testGetPopulationOfCity(){
+        assertDoesNotThrow(() -> {
+            app.getPopulationOfCity("Glasgow");
+        });
+    }
+
+    @Test
+    void testGetPopulationOfCityNullInput(){
+        assertDoesNotThrow(() -> {
+            app.getPopulationOfCity(null);
+        });
+    }
+
+    @Test
+    void testGetPopulationOfCityEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getPopulationOfCity("");
+        });
+    }
+
+    @Test
+    void testGetPopulationOfCityInvalidCity(){
+        assertDoesNotThrow(() -> {
+            app.getPopulationOfCity("bogus value");
+        });
+    }
+
+
+    // POPULATION OF THE WORLD
+
+    @Test
+    void testGetPopulationOfTheWorld(){
+        assertDoesNotThrow(() -> {
+            app.getPopulationOfWorld();
+        });
+    }
+
+    // N MOST POPULOUS CITIES IN CONTINENT
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N_(){
+        assertDoesNotThrow(() -> {
+            app.get_N_MostPopulousCitiesInContinent(Continent.ASIA, 10);
+        });
+    }
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N_NullInput(){
+        assertDoesNotThrow(() -> {
+            app.get_N_MostPopulousCitiesInContinent(null,10);
+        });
+    }
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N_InvalidLimit(){
+        assertDoesNotThrow(() -> {
+            app.get_N_MostPopulousCitiesInContinent(Continent.AFRICA, 0);
+        });
+    }
+
+    // WORLD PERCENTAGE OF LANGUAGE SPEAKERS
+
+    @Test
+    void testGetPercentageOfLanguageSpeakers(){
+        assertDoesNotThrow(() -> {
+            app.getWorldPercentageOfLanguageSpeakers("Spanish");
+        });
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersNullInput(){
+        assertDoesNotThrow(() -> {
+            app.getWorldPercentageOfLanguageSpeakers(null);
+        });
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getWorldPercentageOfLanguageSpeakers("");
+        });
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersInvalidCity(){
+        assertDoesNotThrow(() -> {
+            app.getWorldPercentageOfLanguageSpeakers("bogus value");
+        });
+    }
+
+    //GET TOP N POPULATED CITIES
+    @Test
+    void testGetTop_N_PopulatedCities(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCities(5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesNegativeValue(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCities(-1);
+        });
+    }
+    //GET TOP N POPULATED CITIES OF A COUNTRY
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountry(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry("United Kingdom", 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountryNegativeLimit(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry("United Kingdom", -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountryNullString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry(null, -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountryEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry("", 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesoOfCountryInvalidString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCitiesOfCountry("Invalid String", 5);
+        });
+    }
+    //GET TOP N POPULATED CAPITAL CITIES OF A REGION
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegion(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion("North America", 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegionNegativeLimit(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion("North America", -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegionNullString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion(null, -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegionEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion("", 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegionInvalidString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion("Invalid String", 5);
         });
     }
 }
