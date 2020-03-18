@@ -111,28 +111,38 @@ public class AppIntegrationTest {
     @Test
     void testGetPopulationOfCity(){
         assertDoesNotThrow(() -> {
-            app.getAllCitiesInRegionOrderByPopulation("Glasgow");
+            app.getPopulationOfCity("Glasgow");
         });
     }
 
     @Test
     void testGetPopulationOfCityNullInput(){
         assertDoesNotThrow(() -> {
-            app.getAllCitiesInRegionOrderByPopulation(null);
+            app.getPopulationOfCity(null);
         });
     }
 
     @Test
     void testGetPopulationOfCityEmptyString(){
         assertDoesNotThrow(() -> {
-            app.getAllCitiesInRegionOrderByPopulation("");
+            app.getPopulationOfCity("");
         });
     }
 
     @Test
     void testGetPopulationOfCityInvalidCountry(){
         assertDoesNotThrow(() -> {
-            app.getAllCitiesInRegionOrderByPopulation("bogus value");
+            app.getPopulationOfCity("bogus value");
+        });
+    }
+
+
+    // POPULATION OF THE WORLD
+
+    @Test
+    void testGetPopulationOfTheWorld(){
+        assertDoesNotThrow(() -> {
+            app.getPopulationOfWorld();
         });
     }
 }

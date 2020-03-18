@@ -33,6 +33,21 @@ public class App {
         }
     }
 
+    public int getPopulationOfWorld() throws SQLException {
+
+        Statement stmt = con.createStatement();
+
+        String query = "SELECT sum(population) FROM country";
+
+        ResultSet rset = stmt.executeQuery(query);
+
+        if(rset != null && rset.next()){
+            return rset.getInt("population");
+        }
+
+        return -1;
+    }
+
     public int getPopulationOfCity(String cityName) throws SQLException {
 
         Statement stmt = con.createStatement();
