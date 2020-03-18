@@ -7,3 +7,4 @@ services:
 
 after_success:
   - docker-compose up --abort-on-container-exit
+
