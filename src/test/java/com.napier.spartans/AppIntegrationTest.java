@@ -409,7 +409,7 @@ public class AppIntegrationTest {
     @Test
     void testGetPercentageOfLanguageSpeakers(){
         try {
-            assertEquals(5.84050165D,app.getWorldPercentageOfLanguageSpeakers("Spanish"));
+            assertEquals(6,Math.round(app.getWorldPercentageOfLanguageSpeakers("Spanish")));
         } catch (SQLException e){
             e.printStackTrace();
         }
