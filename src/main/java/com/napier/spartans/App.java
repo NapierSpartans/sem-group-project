@@ -132,6 +132,13 @@ public class App {
     }
 
     public ArrayList<City> getAllCitiesInDistrictOrderPopulation(String district) throws SQLException {
+        return getAllCitiesInDistrictOrderPopulation(district, Integer.MAX_VALUE);
+    }
+
+    public ArrayList<City> getAllCitiesInDistrictOrderPopulation(String district, int limit) throws SQLException {
+
+        if(limit < 1) return null;
+
         ArrayList<City> cities = new ArrayList<>();
 
         Statement stmt = con.createStatement();
@@ -142,6 +149,10 @@ public class App {
                 "con.code2, cap.id, cap.name, cap.district, cap.population FROM city as cit " +
                 "LEFT JOIN country as con on cit.countrycode = con.code LEFT JOIN city as cap on " +
                 "con.capital = cap.id WHERE cit.district = '" + district +"' ORDER BY POPULATION";
+
+        if(limit != Integer.MAX_VALUE){
+            query = query + " LIMIT " + limit;
+        }
 
         ResultSet rset = stmt.executeQuery(query);
 
