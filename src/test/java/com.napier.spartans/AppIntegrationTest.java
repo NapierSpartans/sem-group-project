@@ -198,4 +198,19 @@ public class AppIntegrationTest {
             app.getWorldPercentageOfLanguageSpeakers("bogus value");
         });
     }
+
+    //GET TOP N POPULATED CITIES
+    @Test
+    void testGetTop_N_PopulatedCities(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCities(5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesNegativeValue(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCities(-1);
+        });
+    }
 }
