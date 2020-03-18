@@ -214,6 +214,33 @@ public class AppIntegrationTest {
         }
     }
 
+    @Test
+    void testGetCitiesInDistrictOrderPopulationWithLimit(){
+        try {
+            assertEquals(20, app.getAllCitiesInDistrictOrderPopulation("Buenos Aires", 20).size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulationWithNegativeLimit(){
+        try {
+            assertEquals(0, app.getAllCitiesInDistrictOrderPopulation("Buenos Aires", -1).size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulationWithMaximumLimit(){
+        try {
+            assertEquals(31, app.getAllCitiesInDistrictOrderPopulation("Buenos Aires", Integer.MAX_VALUE).size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // POPULATION OF A CITY
 
     @Test
@@ -244,6 +271,42 @@ public class AppIntegrationTest {
         });
     }
 
+    @Test
+    void testGetPopulationOfCity(){
+        try {
+            assertEquals( 619680, app.getPopulationOfCity("Glasgow"));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetPopulationOfCityEmptyCityString(){
+        try {
+            assertEquals( -1, app.getPopulationOfCity(""));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetPopulationOfCityNullCity(){
+        try {
+            assertEquals( -1, app.getPopulationOfCity(null));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetPopulationOfCityInvalidCity(){
+        try {
+            assertEquals( -1, app.getPopulationOfCity("bogus value"));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
     // POPULATION OF THE WORLD
 
@@ -252,6 +315,15 @@ public class AppIntegrationTest {
         assertDoesNotThrow(() -> {
             app.getPopulationOfWorld();
         });
+    }
+
+    @Test
+    void testGetPopulationOfTheWorld(){
+        try{
+            assertEquals(6078749450L,app.getPopulationOfWorld());
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     // N MOST POPULOUS CITIES IN CONTINENT
@@ -273,8 +345,35 @@ public class AppIntegrationTest {
     @Test
     void testGetMostPopulousCitiesInContinentLimit_N_InvalidLimitDoesNotThrow(){
         assertDoesNotThrow(() -> {
-            app.get_N_MostPopulousCitiesInContinent(Continent.AFRICA, 0);
+            app.get_N_MostPopulousCitiesInContinent(Continent.AFRICA, -1);
         });
+    }
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N(){
+        try {
+            assertEquals(10, app.get_N_MostPopulousCitiesInContinent(Continent.ASIA, 10).size());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N_NullContinent(){
+        try {
+            assertEquals(null, app.get_N_MostPopulousCitiesInContinent(null, 10));
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetMostPopulousCitiesInContinentLimit_N_NegativeLimit(){
+        try {
+            assertEquals(0, app.get_N_MostPopulousCitiesInContinent(Continent.ASIA, -1).size());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     // WORLD PERCENTAGE OF LANGUAGE SPEAKERS
@@ -307,6 +406,42 @@ public class AppIntegrationTest {
         });
     }
 
+    @Test
+    void testGetPercentageOfLanguageSpeakers(){
+        try {
+            assertEquals(5.84050165D,app.getWorldPercentageOfLanguageSpeakers("Spanish"));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersNullLanguage(){
+        try {
+            assertEquals(-1,app.getWorldPercentageOfLanguageSpeakers(null));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersEmptyLanguage(){
+        try {
+            assertEquals(-1 ,app.getWorldPercentageOfLanguageSpeakers(""));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetPercentageOfLanguageSpeakersInvalidLanguage(){
+        try {
+            assertEquals(0,app.getWorldPercentageOfLanguageSpeakers("Bogus Value"));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     //GET TOP N POPULATED CITIES
     @Test
     void testGetTop_N_PopulatedCitiesDoesNotThrow(){
@@ -321,6 +456,26 @@ public class AppIntegrationTest {
             app.getTop_N_PopulatedCities(-1);
         });
     }
+
+    //GET TOP N POPULATED CITIES
+    @Test
+    void testGetTop_N_PopulatedCities(){
+        try {
+            assertEquals(5,app.getTop_N_PopulatedCities(5).size());
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCitiesNegativeLimit(){
+        try {
+            assertEquals(0,app.getTop_N_PopulatedCities(-1).size());
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     //GET TOP N POPULATED CITIES OF A COUNTRY
     @Test
     void testGetTop_N_PopulatedCitiesOfCountryDoesNotThrow(){
@@ -419,14 +574,14 @@ public class AppIntegrationTest {
     @Test
     void testGetTop_N_PopulatedCapitalCitiesDoesNotThrow(){
         assertDoesNotThrow(() -> {
-            app.getTop_N_PopulatedCities(5);
+            app.getTop_N_PopulatedCapitalCitiesOfWorld(5);
         });
     }
 
     @Test
     void testGetTop_N_PopulatedCapitalCitiesNegativeLimitDoesNotThrow(){
         assertDoesNotThrow(() -> {
-            app.getTop_N_PopulatedCities(-1);
+            app.getTop_N_PopulatedCapitalCitiesOfWorld(-1);
         });
     }
 

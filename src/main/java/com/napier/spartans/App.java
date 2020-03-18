@@ -18,7 +18,6 @@ public class App {
 
 
     public static void main(String[] args) {
-
         // Create new Application
         App a = new App();
 
@@ -30,14 +29,6 @@ public class App {
         else
         {
             a.connect(args[0]);
-        }
-
-
-        try {
-            a.printCities(a.getAllCitiesInCountryOrderPopulation("United Kingdom"));
-            a.printCities(a.getAllCitiesInRegionOrderByPopulation("Caribbean"));
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -353,9 +344,7 @@ public class App {
 
     public ArrayList<City> getTop_N_PopulatedCities(int limit) throws SQLException {
 
-        if(limit <1) return null;
-
-        ArrayList<City> cities = new ArrayList<>();
+        if(limit <1) return new ArrayList<>();
 
         Statement stmt = con.createStatement();
 
@@ -370,10 +359,11 @@ public class App {
 
     public ArrayList<City> get_N_MostPopulousCitiesInContinent(Continent continent, int limit) throws SQLException {
 
-        if(limit < 1) return null;
         if(continent == null) return null;
 
         ArrayList<City> cities = new ArrayList<>();
+
+        if(limit < 1) return cities;
 
         Statement stmt = con.createStatement();
 
@@ -387,6 +377,9 @@ public class App {
 
     public double getWorldPercentageOfLanguageSpeakers(String language) throws SQLException {
 
+        if (language == null) return -1;
+        if (language.isEmpty()) return -1;
+
         Statement stmt = con.createStatement();
 
         String query = "SELECT (a.speakers/b.total)*100 as percentageofpopulation FROM " +
@@ -396,11 +389,10 @@ public class App {
 
         ResultSet rset = stmt.executeQuery(query);
 
-        if(rset != null && rset.next()){
-            return rset.getDouble("percentageofpopulation");
-        }
+        rset.next();
 
-        return -1;
+        return rset.getDouble("percentageofpopulation");
+
     }
 
     public long getPopulationOfWorld() throws SQLException {
@@ -411,14 +403,17 @@ public class App {
 
         ResultSet rset = stmt.executeQuery(query);
 
-        if(rset != null && rset.next()){
-            return rset.getLong("population");
-        }
+        rset.next();
 
-        return -1;
+        return rset.getLong("population");
+
     }
 
     public int getPopulationOfCity(String cityName) throws SQLException {
+
+        if(cityName == null) return -1;
+
+        if(cityName.isEmpty()) return -1;
 
         Statement stmt = con.createStatement();
 
@@ -439,11 +434,11 @@ public class App {
 
     public ArrayList<City> getAllCitiesInDistrictOrderPopulation(String district, int limit) throws SQLException {
 
-        if(limit < 1 || district == null) return null;
+        if(district == null) return null;
 
         ArrayList<City> cities = new ArrayList<>();
 
-        if (district.isEmpty()) return cities;
+        if(limit < 1 || district.isEmpty()) return cities;
 
         Statement stmt = con.createStatement();
 
