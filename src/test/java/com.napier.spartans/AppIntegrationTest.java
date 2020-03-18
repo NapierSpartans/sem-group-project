@@ -75,4 +75,34 @@ public class AppIntegrationTest {
             app.getAllCitiesInRegionOrderByPopulation("bogus value");
         });
     }
+
+    // CITIES IN DISTRICT BY POPULATION TESTS
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulation(){
+        assertDoesNotThrow(() -> {
+            app.getAllCitiesInRegionOrderByPopulation("Buenos Aires");
+        });
+    }
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulationNullInput(){
+        assertDoesNotThrow(() -> {
+            app.getAllCitiesInRegionOrderByPopulation(null);
+        });
+    }
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulationEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getAllCitiesInRegionOrderByPopulation("");
+        });
+    }
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulationInvalidCountry(){
+        assertDoesNotThrow(() -> {
+            app.getAllCitiesInRegionOrderByPopulation("bogus value");
+        });
+    }
 }
