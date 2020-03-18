@@ -1,0 +1,147 @@
+@startuml
+
+actor SM12 as "Staff Member "
+
+rectangle Database12
+
+rectangle "World Database UC12" {
+    usecase UC12 as "Get top 'N' populated
+                    cities in the world"
+
+    usecase UCa12 as "Get user input for 'N'"
+
+    usecase UCb12 as "Print cities"
+
+    SM12 - UC12
+    UC12 ..> UCa12: include
+    UC12 ..> UCb12: include
+    UC12 - Database12
+}
+
+actor SM15 as "Staff Member "
+
+rectangle Database15
+
+rectangle "World Database UC15" {
+    usecase UC15 as "Get top 'N' populated
+                    cities in a county"
+
+    usecase UCa15 as "Get user input for 'N'"
+
+    usecase UCb15 as "Print cities"
+
+    SM15 - UC15
+    UC15 ..> UCa15: include
+    UC15 ..> UCb15: include
+    UC15 - Database15
+}
+
+actor SM17 as "Staff Member "
+
+rectangle Database17
+
+rectangle "World Database UC17" {
+    usecase UC17 as "Get all capital cities in
+                     the world organised by largest
+                     population to smallest"
+
+    usecase UCa17 as "Get user input for 'N'"
+
+    usecase UCb17 as "Print cities"
+
+    SM17 - UC17
+    UC17 ..> UCa17 : include
+    UC17 ..> UCb17 : include
+    UC17 - Database17
+}
+
+actor SM18 as "Staff Member "
+
+rectangle Database18
+
+rectangle "World Database UC18" {
+    usecase UC18 as "Get all capital cities
+                    in continent organised by
+                    largest population to
+                    smallest"
+
+    usecase UCa18 as "Print cities"
+
+    SM18 - UC18
+    UC18 ..> UCa18 : include
+    UC18 - Database18
+}
+
+actor SM19 as "Staff Member"
+
+rectangle Database19
+
+rectangle "World Database UC19" {
+    usecase UC19 as "Get all capital cities in
+                     a region organised by largest
+                    population to smallest"
+
+
+    usecase UCa19 as "Print cities"
+
+    SM19 - UC19
+    UC19 ..> UCa19 : include
+
+    UC19 - Database19
+}
+
+actor SM20 as "Staff Member "
+
+rectangle Database20
+
+rectangle "World Database UC20" {
+    usecase UC20 as "Get top 'N' populated
+                    capital cities the world"
+
+    usecase UCa20 as "Get user input for 'N'"
+
+    usecase UCb20 as "Print cities"
+
+    SM20 - UC20
+    UC20 ..> UCa20 : include
+    UC20 ..> UCb20 : include
+    UC20 - Database20
+}
+
+actor SM21 as "Staff Member "
+
+rectangle Database21
+
+rectangle "World Database UC21" {
+    usecase UC21 as "Get top 'N' populated
+                    capital cities in a continent"
+
+    usecase UCa21 as "Get user input for 'N'"
+
+    usecase UCb21 as "Print cities"
+
+    SM21 - UC21
+    UC21 ..> UCa21 : include
+    UC21 ..> UCb21 : include
+    UC21 - Database21
+}
+
+actor SM22 as "Staff Member "
+
+rectangle Database22
+
+rectangle "World Database UC22" {
+    usecase UC22 as "Get top 'N' populated
+                    capital cities in a region"
+
+    usecase UCa22 as "Get user input for 'N'"
+
+    usecase UCb22 as "Print cities"
+
+    SM22 - UC22
+    UC22 ..> UCa22 : include
+    UC22 ..> UCb22 : include
+    UC22 - Database22
+}
+left to right direction
+@enduml

@@ -1,0 +1,160 @@
+@startuml
+/'#9'/
+/'As a Staff Member, I want to view the cities an a region organised by population descending.'/
+actor staff9 as "Staff Member"
+
+rectangle Database9 as "Database"
+
+rectangle "World Database UC9" {
+    usecase UC9 as "Get cities an a region
+     by population"
+
+    usecase UC9a as "Print countries"
+    usecase UC9b as "Get Name of Region"
+    staff9 - UC9
+    UC9 ..> UC9b : include
+    UC9 ..> UC9a : include
+    UC9 - Database9
+}
+
+/'#10'/
+/'As a Staff Member, I want to view cities in a country by population.'/
+actor staff10 as "Staff Member"
+
+rectangle Database10 as "Database"
+
+rectangle "World Database UC10" {
+    usecase UC10 as "Get cities in country
+    by population"
+
+    usecase UC10a as "Print cities"
+
+     usecase UC10b as "Get name of country"
+
+    staff10 - UC10
+    UC10 ..> UC10a : include
+    UC10 ..> UC10b : include
+    UC10 - Database10
+}
+
+/'#11'/
+/'As a Staff Member, I want to view cities in a District by population.'/
+actor staff11 as "Staff Member"
+
+rectangle Database11 as "Database"
+
+rectangle "World Database UC11" {
+    usecase UC11 as "Get cities in District
+    by population"
+
+    usecase UC11a as "Print cities"
+
+     usecase UC11b as "Get name of District"
+
+    staff11 - UC11
+    UC11 ..> UC11a : include
+    UC11 ..> UC11b : include
+    UC11 - Database11
+}
+
+/'#13'/
+/'As a Staff Member, I want to view the top N populated cities in a continent where N is provided by the user.'/
+actor staff13 as "Staff Member"
+
+rectangle Database13 as "Database"
+
+rectangle "World Database UC13" {
+    usecase UC13 as "Get the top N populated cities in a continent"
+
+    usecase UC13a as "Print cities"
+
+     usecase UC13b as "Get name of continent"
+
+     usecase UC13c as "Get N"
+
+    staff13 - UC13
+    UC13 ..> UC13a : include
+    UC13 ..> UC13b : include
+    UC13 ..> UC13c : include
+    UC13 - Database13
+}
+
+/'#16'/
+/'As a Staff Member, I want to view the top N populated cities in a district where N is provided by the user.'/
+actor staff16 as "Staff Member"
+
+rectangle Database16 as "Database"
+
+rectangle "World Database UC16" {
+    usecase UC16 as "Get the top N populated cities in a district"
+
+    usecase UC16a as "Print cities"
+
+     usecase UC16b as "Get name of district"
+
+     usecase UC16c as "Get N"
+
+    staff16 - UC16
+    UC16 ..> UC16a : include
+    UC16 ..> UC16b : include
+    UC16 ..> UC16c : include
+    UC16 - Database16
+}
+
+/'#26'/
+/'As a Staff Member, I want to view the population of the world.'/
+actor staff26 as "Staff Member"
+
+rectangle Database26 as "Database"
+
+rectangle "World Database UC26" {
+    usecase UC26 as "Get the population of the world"
+
+    usecase UC26a as "Print population"
+
+    staff26 - UC26
+    UC26 ..> UC26a : include
+    UC26 - Database26
+}
+
+/'#31'/
+/'As a Staff Member, I want to view the population of a city.'/
+actor staff31 as "Staff Member"
+
+rectangle Database31 as "Database"
+
+rectangle "World Database UC31" {
+    usecase UC31 as "Get the population of a city"
+
+    usecase UC31a as "Print population"
+
+    usecase UC31b as "Get City"
+
+    staff31 - UC31
+    UC31 ..> UC31a : include
+    UC31 ..> UC31b : include
+    UC31 - Database31
+}
+
+/'#32'/
+/'As a Staff Member, I want to view the number of people who speak a language, from greatest number to smallest (Including percentage)'/
+actor staff32 as "Staff Member"
+
+rectangle Database32 as "Database"
+
+rectangle "World Database UC32" {
+    usecase UC32 as "Get the number of people who
+    speak a language by number of speakers as a
+    including percentage"
+
+    usecase UC32a as "Print language and number of speakers"
+
+    usecase UC32b as "Print Percentage of all fluent speakers"
+
+    staff32 - UC32
+    UC32 ..> UC32a : include
+    UC32 ..> UC32b : include
+    UC32 - Database32
+}
+left to right direction
+@enduml

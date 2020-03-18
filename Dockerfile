@@ -1,7 +1,7 @@
 FROM openjdk:8
 
-COPY ./target/semWorldDatabase-0.1.0.2-jar-with-dependencies.jar /tmp
+COPY ./target/semWorldDatabase.jar /tmp
 
 WORKDIR /tmp
 
-ENTRYPOINT ["java", "-jar", "semWorldDatabase-0.1.0.2-jar-with-dependencies.jar"]
+ENTRYPOINT ["java", "-jar", "semWorldDatabase.jar", "db:3306"]
