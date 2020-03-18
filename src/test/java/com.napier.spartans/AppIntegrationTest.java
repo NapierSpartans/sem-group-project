@@ -1,9 +1,12 @@
 package com.napier.spartans;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import java.sql.SQLException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppIntegrationTest {
 
@@ -14,6 +17,11 @@ public class AppIntegrationTest {
     {
         app = new App();
         app.connect("localhost:33060");
+    }
+
+    @AfterAll
+    static void destroy(){
+        app.disconnect();
     }
 
     // CITIES IN COUNTRY BY POPULATION TESTS
@@ -46,6 +54,34 @@ public class AppIntegrationTest {
         });
     }
 
+    @Test
+    void testGetCitiesInCountryOrderPopulation(){
+        try {
+            assertEquals(81, app.getAllCitiesInCountryOrderPopulation("United Kingdom").size());
+        }catch (SQLException e){ e.printStackTrace(); }
+    }
+
+    @Test
+    void testGetCitiesInCountryOrderPopulationNullCountryName(){
+        try {
+            assertEquals(null, app.getAllCitiesInCountryOrderPopulation(null));
+        }catch (SQLException e){ e.printStackTrace(); }
+    }
+
+    @Test
+    void testGetCitiesInCountryOrderPopulationEmptyCountryName(){
+        try {
+            assertEquals(0, app.getAllCitiesInCountryOrderPopulation("").size());
+        }catch (SQLException e) { e.printStackTrace(); }
+    }
+
+    @Test
+    void testGetCitiesInCountryOrderPopulationInvalidCountryName(){
+        try {
+            assertEquals(0, app.getAllCitiesInCountryOrderPopulation("Bogus Value").size());
+        }catch (SQLException e){ e.printStackTrace(); }
+    }
+
     // CITIES IN REGION BY POPULATION TESTS
 
     @Test
@@ -76,6 +112,42 @@ public class AppIntegrationTest {
         });
     }
 
+    @Test
+    void testGetCitiesInRegionOrderPopulation(){
+        try {
+            assertEquals(327 , app.getAllCitiesInRegionOrderByPopulation("North America").size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetCitiesInRegionOrderPopulationNullRegion(){
+        try {
+            assertEquals(null , app.getAllCitiesInRegionOrderByPopulation(null));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetCitiesInRegionOrderPopulationEmptyRegion(){
+        try {
+            assertEquals(0 , app.getAllCitiesInRegionOrderByPopulation("").size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testGetCitiesInRegionOrderPopulationInvalidRegion(){
+        try {
+            assertEquals(0 , app.getAllCitiesInRegionOrderByPopulation("Bogus Value").size());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // CITIES IN DISTRICT BY POPULATION TESTS
 
     @Test
@@ -104,6 +176,11 @@ public class AppIntegrationTest {
         assertDoesNotThrow(() -> {
             app.getAllCitiesInRegionOrderByPopulation("bogus value");
         });
+    }
+
+    @Test
+    void testGetCitiesInDistrictOrderPopulation(){
+
     }
 
     // POPULATION OF A CITY

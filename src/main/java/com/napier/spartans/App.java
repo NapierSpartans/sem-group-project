@@ -462,7 +462,11 @@ public class App {
      */
     public ArrayList<City> getAllCitiesInCountryOrderPopulation(String countryName) throws SQLException {
 
+        if(countryName == null) return null;
+
         ArrayList<City> cities = new ArrayList<>();
+
+        if(countryName.isEmpty()) return cities;
 
         Statement stmt = con.createStatement();
 
@@ -510,13 +514,6 @@ public class App {
 
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            if(rset == null){
-                System.out.println("City result set is null");
-                return null;
-            }
-
-
-
             while (rset.next())
             {
                 City city = new City();
@@ -535,6 +532,11 @@ public class App {
     }
 
     public ArrayList<City> getAllCitiesInRegionOrderByPopulation(String region) throws SQLException{
+
+        if(region == null) return null;
+
+        if(region.isEmpty()) return new ArrayList<>();
+
         Statement stmt = con.createStatement();
 
         String queryAllCitiesInRegion = "SELECT " + citiesConverter.getFields() +
