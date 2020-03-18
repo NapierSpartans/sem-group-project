@@ -248,4 +248,39 @@ public class AppIntegrationTest {
             app.getTop_N_PopulatedCitiesOfCountry("Invalid String", 5);
         });
     }
+    //GET TOP N POPULATED CAPITAL CITIES OF A REGION
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegion(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion("North America", 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegionNegativeLimit(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion("North America", -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegionNullString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion(null, -1);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegionEmptyString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion("", 5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesoOfRegionInvalidString(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCapitalCitiesOfRegion("Invalid String", 5);
+        });
+    }
 }

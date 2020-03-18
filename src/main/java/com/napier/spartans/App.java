@@ -37,6 +37,53 @@ public class App {
             e.printStackTrace();
         }
     }
+    public ArrayList<City> getTop_N_PopulatedCapitalCitiesOfRegion(String region, int limit) throws SQLException {
+
+        if(limit <1) return null;
+
+        ArrayList<City> cities = new ArrayList<>();
+
+        Statement stmt = con.createStatement();
+
+        String query = "SELECT con.Code, con.name, con.continent, con.region, con.surfacearea, con.indepyear, "+
+                "con.population, con.lifeexpectancy, con.gnp, con.gnpold, con.localname, con.governmentform, con.headofstate,"+
+                "con.code2, cap.id, cap.name, cap.district, cap.population FROM country as con LEFT JOIN city as cap on con.capital = cap.id WHERE region = '"+ region +"' LIMIT 10";
+
+        ResultSet rset = stmt.executeQuery(query);
+
+        if(rset == null) return null;
+
+        while(rset.next()){
+            City capitalCity = new City();
+            capitalCity.id = rset.getInt("cap.id");
+            capitalCity.name = rset.getString("cap.name");
+            capitalCity.district = rset.getString("cap.district");
+            capitalCity.population = rset.getInt("cap.population");
+
+            Country country = new Country();
+            country.code = rset.getString("con.code");
+            country.name = rset.getString("con.name");
+            country.continent = Continent.valueOfLabel(rset.getString("con.continent"));
+            country.region = region;
+            country.surfaceArea = rset.getDouble("con.surfacearea");
+            country.independenceYear = rset.getShort("con.indepyear");
+            country.population = rset.getInt("con.population");
+            country.lifeExpectancy = rset.getDouble("con.lifeexpectancy");
+            country.gnp = rset.getDouble("con.gnp");
+            country.gnpOld = rset.getDouble("con.gnpold");
+            country.localName = rset.getString("con.localname");
+            country.governmentForm = rset.getString("con.governmentform");
+            country.headOfState = rset.getString("con.headofstate");
+            country.code2 = rset.getString("con.code2");
+            capitalCity.country = country;
+            country.capital = capitalCity;
+
+            cities.add(capitalCity);
+        }
+
+        return cities;
+
+    }
 
     public ArrayList<City> getTop_N_PopulatedCitiesOfCountry(String countryName, int limit) throws SQLException {
 
