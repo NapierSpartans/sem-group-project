@@ -323,4 +323,12 @@ public class AppIntegrationTest {
     }
 
 
+    // MOST POPULATED CAPITAL CITIES IN THE WORLD
+
+    @Test
+    void testGetMostPopulatedCapitalCitiesInTheWorld(){
+        assertDoesNotThrow(() -> {
+            app.getMostPopulatedCapitalCitiesOfWorld();
+        });
+    }
 }
