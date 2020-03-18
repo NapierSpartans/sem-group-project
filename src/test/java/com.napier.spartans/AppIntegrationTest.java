@@ -307,5 +307,20 @@ public class AppIntegrationTest {
     }
 
 
+    //GET TOP N POPULATED CAPITAL CITIES
+    @Test
+    void testGetTop_N_PopulatedCapitalCities(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCities(5);
+        });
+    }
+
+    @Test
+    void testGetTop_N_PopulatedCapitalCitiesNegativeLimit(){
+        assertDoesNotThrow(() -> {
+            app.getTop_N_PopulatedCities(-1);
+        });
+    }
+
 
 }
