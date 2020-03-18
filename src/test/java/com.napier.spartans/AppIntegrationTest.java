@@ -215,70 +215,70 @@ public class AppIntegrationTest {
     }
     //GET TOP N POPULATED CITIES OF A COUNTRY
     @Test
-    void testGetTop_N_PopulatedCitiesoOfCountry(){
+    void testGetTop_N_PopulatedCitiesOfCountry(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCitiesOfCountry("United Kingdom", 5);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCitiesoOfCountryNegativeLimit(){
+    void testGetTop_N_PopulatedCitiesOfCountryNegativeLimit(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCitiesOfCountry("United Kingdom", -1);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCitiesoOfCountryNullString(){
+    void testGetTop_N_PopulatedCitiesOfCountryNullString(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCitiesOfCountry(null, -1);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCitiesoOfCountryEmptyString(){
+    void testGetTop_N_PopulatedCitiesOfCountryEmptyString(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCitiesOfCountry("", 5);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCitiesoOfCountryInvalidString(){
+    void testGetTop_N_PopulatedCitiesOfCountryInvalidString(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCitiesOfCountry("Invalid String", 5);
         });
     }
     //GET TOP N POPULATED CAPITAL CITIES OF A REGION
     @Test
-    void testGetTop_N_PopulatedCapitalCitiesoOfRegion(){
+    void testGetTop_N_PopulatedCapitalCitiesOfRegion(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCapitalCitiesOfRegion("North America", 5);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCapitalCitiesoOfRegionNegativeLimit(){
+    void testGetTop_N_PopulatedCapitalCitiesOfRegionNegativeLimit(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCapitalCitiesOfRegion("North America", -1);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCapitalCitiesoOfRegionNullString(){
+    void testGetTop_N_PopulatedCapitalCitiesOfRegionNullString(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCapitalCitiesOfRegion(null, -1);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCapitalCitiesoOfRegionEmptyString(){
+    void testGetTop_N_PopulatedCapitalCitiesOfRegionEmptyString(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCapitalCitiesOfRegion("", 5);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCapitalCitiesoOfRegionInvalidString(){
+    void testGetTop_N_PopulatedCapitalCitiesOfRegionInvalidString(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCapitalCitiesOfRegion("Invalid String", 5);
         });
@@ -286,21 +286,21 @@ public class AppIntegrationTest {
 
     //GET TOP N POPULATED CAPITAL CITIES OF A CONTINENT
     @Test
-    void testGetTop_N_PopulatedCapitalCitiesoOfContinent(){
+    void testGetTop_N_PopulatedCapitalCitiesOfContinent(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCapitalCitiesOfContinent(Continent.AFRICA, 5);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCapitalCitiesoOfContinentNegativeLimit(){
+    void testGetTop_N_PopulatedCapitalCitiesOfContinentNegativeLimit(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCapitalCitiesOfContinent(Continent.ASIA, -1);
         });
     }
 
     @Test
-    void testGetTop_N_PopulatedCapitalCitiesoOfContinentNullContinent(){
+    void testGetTop_N_PopulatedCapitalCitiesOfContinentNullContinent(){
         assertDoesNotThrow(() -> {
             app.getTop_N_PopulatedCapitalCitiesOfContinent(null, -1);
         });
@@ -329,6 +329,22 @@ public class AppIntegrationTest {
     void testGetMostPopulatedCapitalCitiesInTheWorld(){
         assertDoesNotThrow(() -> {
             app.getMostPopulatedCapitalCitiesOfWorld();
+        });
+    }
+
+    // MOST POPULATED CAPITAL CITIES IN A CONTINENT
+
+    @Test
+    void testGetMostPopulatedCapitalCitiesOfContinent(){
+        assertDoesNotThrow(() -> {
+            app.getMostPopulatedCapitalCitiesOfContinent(Continent.AFRICA);
+        });
+    }
+
+    @Test
+    void testGetMostPopulatedCapitalCitiesOfContinentNullValue(){
+        assertDoesNotThrow(() -> {
+            app.getMostPopulatedCapitalCitiesOfContinent(null);
         });
     }
 }
