@@ -548,6 +548,76 @@ public class App {
 
     }
 
+    /* #1 Get All Countries ordered from largest population to smallest */
+    public ArrayList<Country> getAllCountriesOrderPopulation(String countryName) throws SQLException {
+
+        if(countryName == null) return null;
+
+        ArrayList<Country> countries = new ArrayList<>();
+
+        if(countryName.isEmpty()) return countries;
+
+        Statement stmt = con.createStatement();
+
+        String queryCountry = "SELECT con.code, con.name, con.continent, con.region, con.surfacearea, con.indepyear," +
+                "con.population, con.lifeexpectancy, con.gnp, con.gnpold, con.localname," +
+                "con.governmentform, con.headofstate, con.code2, cap.id, cap.name, cap.district, cap.population " +
+                "FROM country as con LEFT JOIN city as cap on con.capital = cap.id " +
+                "WHERE con.name = '" +countryName+"'" ;
+
+        ResultSet countryRset = stmt.executeQuery(queryCountry);
+
+        if(countryRset == null) return null;
+
+        Country country = new Country();
+        City countryCapital = new City();
+
+        if(countryRset.next()){
+            country.code = countryRset.getString("con.code");
+            country.name = countryRset.getString("con.name");
+            country.continent = Continent.valueOfLabel(countryRset.getString("con.continent"));
+            country.region = countryRset.getString("con.region");
+            country.surfaceArea = countryRset.getDouble("con.surfacearea");
+            country.independenceYear = countryRset.getShort("con.indepyear");
+            country.population = countryRset.getInt("con.population");
+            country.lifeExpectancy = countryRset.getDouble("con.lifeexpectancy");
+            country.gnp = countryRset.getDouble("con.gnp");
+            country.gnpOld = countryRset.getDouble("con.gnpold");
+            country.localName = countryRset.getString("con.localname");
+            country.governmentForm = countryRset.getString("con.governmentform");
+            country.headOfState = countryRset.getString("con.headofstate");
+
+
+            countryCapital.id = countryRset.getInt("cap.id");
+            countryCapital.name = countryRset.getString("cap.name");
+            countryCapital.district = countryRset.getString("cap.district");
+            countryCapital.population = countryRset.getInt("cap.population");
+            countryCapital.country = country;
+            country.capital = countryCapital;
+
+            String strSelect =
+                    "SELECT id, name, district, population FROM city " +
+                            "WHERE CountryCode = '" + country.code +"' ORDER BY population DESC";
+
+            stmt = con.createStatement();
+
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                City city = new City();
+                city.id = rset.getInt("id");
+                city.name = rset.getString("name");
+                city.country = country;
+                city.district = rset.getString("district");
+                city.population = rset.getInt("population");
+                cities.add(city);
+            }
+        }
+
+        return cities;
+    }
+
     /**
      * Connect to the MySQL database.
      */
