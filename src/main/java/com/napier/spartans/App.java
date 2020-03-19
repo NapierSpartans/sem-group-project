@@ -548,6 +548,46 @@ public class App {
 
     }
 
+    /** #1 Get All Countries ordered from largest population to smallest **/
+    public ArrayList<Country> getAllCountriesOrderPopulation() throws SQLException {
+
+        ArrayList<Country> countries = new ArrayList<>();
+
+        Statement stmt = con.createStatement();
+
+        String queryCountry = "SELECT con.code, con.name, con.continent, con.region, con.surfacearea, con.indepyear," +
+                "con.population, con.lifeexpectancy, con.gnp, con.gnpold, con.localname," +
+                "con.governmentform, con.headofstate, con.code2, cap.id, cap.name, cap.district, cap.population " +
+                "FROM country ORDER BY con.population DESC";
+
+        ResultSet countryRset = stmt.executeQuery(queryCountry);
+
+        if(countryRset == null) return null;
+
+        Country country = new Country();
+
+        while (countryRset.next())
+        {
+            Country newCountry = new Country();
+            country.code = countryRset.getString("con.code");
+            country.name = countryRset.getString("con.name");
+            country.continent = Continent.valueOfLabel(countryRset.getString("con.continent"));
+            country.region = countryRset.getString("con.region");
+            country.surfaceArea = countryRset.getDouble("con.surfacearea");
+            country.independenceYear = countryRset.getShort("con.indepyear");
+            country.population = countryRset.getInt("con.population");
+            country.lifeExpectancy = countryRset.getDouble("con.lifeexpectancy");
+            country.gnp = countryRset.getDouble("con.gnp");
+            country.gnpOld = countryRset.getDouble("con.gnpold");
+            country.localName = countryRset.getString("con.localname");
+            country.governmentForm = countryRset.getString("con.governmentform");
+            country.headOfState = countryRset.getString("con.headofstate");
+            countries.add(newCountry);
+        }
+
+        return countries;
+    }
+
     /**
      * Connect to the MySQL database.
      */
